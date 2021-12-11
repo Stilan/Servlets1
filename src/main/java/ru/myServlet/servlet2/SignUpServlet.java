@@ -34,7 +34,7 @@ public class SignUpServlet extends HttpServlet {
         /**
          * Вывод чере jsp
          * req.setAttribute() ладутся user из userList
-         * RequestDispatcher requestDispatcher диспечер на строницу signUp.jsp
+         * RequestDispatcher requestDispatcher диспечер на строницу signUp_old.jsp
          *  requestDispatcher.forward(req,resp); перенапровления запроса
          */
         System.out.println(userList.toString());
