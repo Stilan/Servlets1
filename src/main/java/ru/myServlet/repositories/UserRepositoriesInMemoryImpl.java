@@ -27,5 +27,14 @@ public class UserRepositoriesInMemoryImpl implements UserRepositories{
         return this.userList;
     }
 
+    /**
+     * Добовляет User в хранилище
+     * @param user
+     */
+    @Override
+    public void save(User user) {
+        userList.add(user);
+    }
+
 
 }

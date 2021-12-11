@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -41,5 +42,24 @@ public class SignUpServlet extends HttpServlet {
         req.setAttribute("usersFromServer",userList);
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/signUp.jsp");
         dispatcher.forward(req,resp);
+    }
+
+    /**
+     * данные на сервер всегда отпровляются post запросом
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            // из запоса забираем параметры
+        String name = req.getParameter("name");
+        String password = req.getParameter("password");
+        LocalDate birthDate = LocalDate.parse(req.getParameter("birthDate"));
+        // создаем и сохраняем пользавателя
+        User user = new User(name, password, birthDate);
+        userRepositories.save(user);
+        doGet(req, resp);
     }
 }
